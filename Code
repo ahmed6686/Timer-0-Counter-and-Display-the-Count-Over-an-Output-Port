@@ -1,0 +1,29 @@
+/*
+ * Author : Ahmed Ali
+ * https://www.youtube.com/@AWhizHub
+ * https://youtube.com/shorts/Evp0y2fqfWQ?si=l93qRyZiXOyCckFo
+ */ 
+
+
+#include <avr/io.h>
+
+int main(void)
+{
+    /* Replace with your application code */
+	unsigned char ch = 0;
+	
+	PORTB = 0xFF;
+	DDRB = 0x00;
+	DDRC = 0xFF;
+	
+	TCCR0 = 0x06;
+	
+    while ((TIFR & 0x01) == 0 ) 
+    {
+		ch = TCNT0;
+		PORTC = ch;
+    }
+	
+	TIFR = 0x01;
+}
+
